@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Magic Ball App </title>
+		<style>
+			h2 { color:blue };
+		</style>
+	</head>
+	<body>
+		<h1>Magic Ball App</h1>
+		<p id="push">Press Magic Ball to get Your oracle opinion</p>
+		<h2 id="phrase">Oracle opinion will be here</h2>
+		<script src="http://code.jquery.com/jquery-2.1.0.js"></script>	
+		<script>
+			var phrases = [
+				"Definitely You should try it!",
+				"Better reconcider again!",
+				"Skies keep silence. Try again tomorrow.",
+				"We should always think about consequences of our actions!",
+				"Tomorrow is the first day of the rest of Your life!"
+			];
+			function O(i) {
+				return typeof i == 'object' ? i : document.getElementById(i)
+			};
+			function S(i) {
+				return O(i).style
+			};
+			var phrase = phrases[Math.floor(Math.random()*phrases.length)];
+			var redrawPhrase = function () {
+				phrase = phrases[Math.floor(Math.random()*phrases.length)];			
+				el.innerHTML = phrase;
+				O(el).style.color = 'red';
+			};
+		</script>
+	
+		<canvas id="canvas" onclick="redrawPhrase()" width="150" height="150">
+		</canvas>
+	
+		<script>
+			
+			var el = document.getElementById("phrase");
+			var elpush = document.getElementById("clickme");
+			//el.innerHTML = phrase;
+			
+			//redrawPhrase();
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext("2d");
+			var circle=function(x,y,r,fill) {
+				ctx.beginPath();
+				ctx.arc(x,y,r,0,Math.PI*2,false);
+				if (fill) { ctx.fill(); } else { ctx.stroke();}
+			};
+			ctx.lineWidth = 3;
+			ctx.strokeStyle="Black";
+			ctx.fillStyle="Black"; 
+			circle (100,100,50,true);
+			ctx.fillStyle="White"; 
+			circle (100,100,30,true);
+			circle (100,90,10,false);
+			circle (100,110,10,false);
+			
+			//canvas.onclick(function (event) { redrawPhrase()});
+			//elpush.onclick(function (event) { redrawPhrase()});
+			//<button id='clickme' onclick="redrawPhrase()">ֽאזלט לוםÿ</button>
+		</script> 
+		
+	</body>
+</html>
