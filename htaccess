@@ -1,0 +1,11 @@
+
+# HTID:5656569: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
+php_value display_errors 1
+# DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:5656569:
+# added by me
+AddType application/x-httpd-php .htm .html
+AddHandler x-httpd-php7 .htm .html
+
+<FilesMatch "\.(htm|html|php)$">
+SetHandler application/x-httpd-php
+</FilesMatch>
