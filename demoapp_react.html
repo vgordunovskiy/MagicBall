@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Magic Ball App</title>
+	<style>
+		h2 { color:blue };
+	</style>
+</head>
+<body>
+    <div id="header"> </div>
+    <div id="ball"> </div>
+    <div id="footer"> </div>
+   	
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>	
+     
+	
+	   
+
+   <script type="text/babel">
+var phrases = [
+//				"ORIGINAL: Definitely You should try it!",
+//				"Better reconsider again!",
+//				"Skies keep silence. Try again tomorrow.",
+//				"We should always think about consequences of our actions!",
+				"Tomorrow is the first day of the rest of Your life!"
+			];
+<?php
+//connection to db
+$host = 'localhost'; // server name
+$database = 'id6095476_test'; // db name
+$user = 'id6095476_test'; // user name
+$password = 'testtest'; // password
+$dbconn = mysqli_connect($host, $user, $password, $database)
+     or die("Error " . mysqli_error($dbconn));
+
+// Executing SQL Query
+$query = 'SELECT * FROM phrases';
+$result = mysqli_query($dbconn, $query) or die("Error " . mysqli_error($dbconn));
+while($row=mysqli_fetch_array($result, MYSQLI_ASSOC)){ 
+echo "phrases[phrases.length]=\"".$row['phrase']."\";\n";
+};
+mysqli_free_result($result);
+?>
+
+
+var phrase = phrases[Math.floor(Math.random()*phrases.length)];
+
+
+
+class Oracle  extends React.Component {
+state = {
+    phrase: "111",
+  };
+	shouldComponentUpdate() {
+		console.log(this.state.phrase);
+		if (this.state.phrase !== {phrase}) {
+		return true;
+	}
+		return false;
+	};
+
+  render() {
+//    return <h2 id="phrase">{this.state.phrase}</h2>;
+    return <h2 id="phrase">{this.state.phrase}</h2>;
+  }
+};
+
+class Ball  extends React.Component {
+  render() {
+    return <h2 id="phrase">{this.props.phrase}</h2>;
+  }
+};
+
+class Canvas extends React.Component {
+             
+
+constructor(props) {
+               super(props);
+               this.state = {phrase: "Oracle opinion will be here", color:"red" };
+                 
+               this.press = this.press.bind(this);
+           }
+
+//divStyle = {  color: 'red'};
+
+           press(){
+ //              let className = (this.state.class==="off")?"on":"off";
+ //              this.setState({class: className});
+//	phrase = phrases[Math.floor(Math.random()*phrases.length)];
+	this.setState({phrase:phrases[Math.floor(Math.random()*phrases.length)], color:"red"});
+//	console.log(this.state.phrase);
+           }
+           render() {
+//return <div><h2 id="phrase" style={this.state.color}>{this.state.phrase}</h2><canvas id="canvas" onClick={this.press} width="150" height="150"></canvas></div>
+return <div  >  <h2 id="phrase" >{this.state.phrase}</h2>
+		<img id="canvas" src="ball.jpg" onClick={this.press} width="150" height="150"></img>
+	</div>
+  //             return <button onClick={this.press} className={this.state.class}>{this.state.label}</button>;
+           }
+       }
+
+
+   // react element rendering
+    ReactDOM.render(
+	<div>
+	        <h1>Magic Ball App</h1>
+		<p id="push">Press Magic Ball to get Your oracle opinion</p>	
+	</div>,  // element to be created
+        document.getElementById("header")    // where we watn that element
+	);
+
+//	ReactDOM.render(
+   //           <Oracle phrase={phrase}/>,
+   //           document.getElementById("opinion")
+   //       );
+	ReactDOM.render(
+              <Canvas/>,
+              document.getElementById("ball")
+          )
+
+	//function(){ console.log("rendering React element");}
+    //)
+   </script>
+<p id="push"><em>Magic Ball is built using : <b> React/JavaScript, PHP, PostgreSQL/MySQL, HTML, CSS, GitHub</b> </em></p>
+</body>
+</html>
