@@ -8,17 +8,39 @@
 	</head>
 	<body>
 		<h1>Magic Ball App</h1>
-		<p id="push">Press Magic Ball to get Your oracle opinion</p>
+		<p id="push">Press Magic Ball to get <?php echo "bloody"?> Your oracle opinion</p>
+		
 		<h2 id="phrase">Oracle opinion will be here</h2>
 		<script src="http://code.jquery.com/jquery-2.1.0.js"></script>	
 		<script>
 			var phrases = [
-				"Definitely You should try it!",
-				"Better reconcider again!",
-				"Skies keep silence. Try again tomorrow.",
-				"We should always think about consequences of our actions!",
-				"Tomorrow is the first day of the rest of Your life!"
+			//	"ORIGINAL: Definitely You should try it!",
+			//	"Better reconsider again!",
+			//	"Skies keep silence. Try again tomorrow.",
+			//	"We should always think about consequences of our actions!",
+			//	"Tomorrow is the first day of the rest of Your life!"
 			];
+		
+
+<?php
+//connection to db
+$host = 'localhost'; // server name
+$database = 'id6095476_test'; // db name
+$user = 'id6095476_test'; // user name
+$password = 'testtest'; // password
+$dbconn = mysqli_connect($host, $user, $password, $database)
+     or die("Error " . mysqli_error($dbconn));
+
+// Executing SQL Query
+$query = 'SELECT * FROM phrases';
+$result = mysqli_query($dbconn, $query) or die("Error " . mysqli_error($dbconn));
+while($row=mysqli_fetch_array($result, MYSQLI_ASSOC)){ 
+echo "phrases[phrases.length]=\"".$row['phrase']."\";\n";
+};
+mysqli_free_result($result);
+?>
+
+
 			function O(i) {
 				return typeof i == 'object' ? i : document.getElementById(i)
 			};
@@ -61,8 +83,8 @@
 			
 			//canvas.onclick(function (event) { redrawPhrase()});
 			//elpush.onclick(function (event) { redrawPhrase()});
-			//<button id='clickme' onclick="redrawPhrase()">Õ‡ÊÏË ÏÂÌˇ</button>
+			//<button id='clickme' onclick="redrawPhrase()">√ç√†√¶√¨√® √¨√•√≠√ø</button>
 		</script> 
-		
+		<p id="push"><em>This sample page is built using : <b> PHP, JavaScript, PostgreSQL/MySQL, MyHTML, CSS, GitHub</b> </em></p>
 	</body>
 </html>
